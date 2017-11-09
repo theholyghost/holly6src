@@ -1,8 +1,8 @@
 This is a game kit which gives you an API to make Adventure, RPG, RTS
 and RPG games are all-in-one.
 
-Almost every class of the API can be overrided to provide you with game 
-mechanics without a drawing system or using ncurses (terminal drawing.) 
+Almost every class of the API can be overrided to provide you with game
+mechanics without a drawing system or using ncurses (terminal drawing.)
 
 There is an separate package for doing the Game's AI. In the first place
 you do not need AI but you can steer this by using the update methods in
