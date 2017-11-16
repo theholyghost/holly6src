@@ -4,7 +4,7 @@ use NativeCall;
 
 unit module PaganVisions2;
 
-class PaganVision2::Player
+class PaganVisions2::Player
 {
 	has $!image_data;
 	has $!x;

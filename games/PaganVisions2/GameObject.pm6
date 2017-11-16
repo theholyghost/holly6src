@@ -4,7 +4,7 @@ use NativeCall;
 
 unit module PaganVisions2;
 
-class PaganVision2::GameObject
+class PaganVisions2::GameObject
 {
 	has $!x;
 	has $!y;

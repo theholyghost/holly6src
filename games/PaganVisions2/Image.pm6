@@ -5,7 +5,7 @@ use SDL2::Raw
 
 unit module PaganVisions2;
 
-class PaganVision2::Image
+class PaganVisions2::Image
 {
 	has $!image_data;
 	has $!tile;

@@ -4,7 +4,7 @@ use NativeCall;
 
 unit module PaganVisions2;
 
-class PaganVision2::MovingEntity is GameObject
+class PaganVisions2::MovingEntity is GameObject
 {
 	has $!direction;
 	has $!moving;

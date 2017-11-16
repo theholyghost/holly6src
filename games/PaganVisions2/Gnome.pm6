@@ -4,7 +4,7 @@ use NativeCall;
 
 unit module PaganVisions2;
 
-class PaganVision2::Gnome is MovingEntity
+class PaganVisions2::Gnome is MovingEntity
 {
 
 

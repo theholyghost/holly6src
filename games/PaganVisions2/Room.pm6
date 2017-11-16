@@ -3,7 +3,7 @@
 
 unit module PaganVisions2;
 
-class PaganVision2::Room
+class PaganVisions2::Room
 {
 	has $!bg_image;
 

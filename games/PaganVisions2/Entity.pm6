@@ -4,7 +4,7 @@ use NativeCall;
 
 unit module PaganVisions2;
 
-class PaganVision2::Entity is GameObject
+class PaganVisions2::Entity is GameObject
 {
 	has $!staticimagelib ### StateImagelibrary.pm6
 
