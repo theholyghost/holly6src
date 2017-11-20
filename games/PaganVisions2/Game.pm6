@@ -2,6 +2,7 @@
 ### use v6.0;
 
 unit module PaganVisions2;
+use nqp;
 use NativeCall;
 use SDL2::Raw;
 
@@ -50,13 +51,50 @@ enum GAME_KEYS (
 
 	method render() {
 
-	### SDL_UpdateTexture($tile, 0, $data, 320*32);
+		### SDL_UpdateTexture($tile, 0, $data, 320*32);
 
-	SDL_SetRenderDrawColor(self.renderer, 0x0, 0x0, 0x0, 0xff);
-	SDL_RenderClear(self.renderer);
-	SDL_SetRenderDrawColor(self.renderer, 0xff, 0xff, 0xff, 0x7f);
-	SDL_RenderPresent(self.renderer);
+		###SDL_SetRenderDrawColor(self.renderer, 0x0, 0x0, 0x0, 0xff);
+		###SDL_RenderClear(self.renderer);
+		###SDL_SetRenderDrawColor(self.renderer, 0xff, 0xff, 0xff, 0x7f);
+		###SDL_RenderPresent(self.renderer);
 
-	### SDL_RendererFlip;
+		### SDL_RendererFlip;
+	}
+
+ 	method mainloop() {
+		my $start = nqp::time_n();
+		my $event = SDL_Event.new;
+		my num $df = 0.0001e0;
+		my %down_keys;
+		my @times;
+
+		while SDL_PollEvent($event) {
+			my $casted_event = SDL_CastEvent($event);
+
+			given $casted_event {
+				when (*.type == QUIT) {
+					last;### mainloop;
+			}
+
+			when (*.type == KEYDOWN) {
+				if GAME_KEYS(.scancode) -> $comm {
+					%down_keys{$comm} = 1;
+				}
+				CATCH { say $_ }
+			}
+	
+			when (*.type == KEYUP) {
+				if GAME_KEYS(.scancode) -> $comm {
+					%down_keys{$comm} = 0;
+				} 
+				CATCH { say $_ }
+			}
+		}
+
+	###update();
+	###draw();
+	self.render();
+
+	}
 	}
 }

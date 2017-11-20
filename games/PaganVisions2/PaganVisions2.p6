@@ -6,52 +6,11 @@ use Game;
 
 my $game = PaganVisions2::Game.new;
 
-my @times;
-my $event = SDL_Event.new;
+my $start = nqp::time_n();
 my num $df = 0.0001e0;
-enum GAME_KEYS (
-	K_UP => 82,
-	K_DOWN => 81,
-	K_LEFT => 80,
-	K_RIGHT => 79,
-	K_SPACE => 44,
-);
-my %down_keys;
-
+my @times;
 main: loop {
-	my $start = nqp::time_n();
-
-
-	while SDL_PollEvent($event) {
-	my $casted_event = SDL_CastEvent($event);
-
-	given $casted_event {
-		when (*.type == QUIT) {
-			last main;
-		}
-
-		when (*.type == KEYDOWN) {
-			if GAME_KEYS(.scancode) -> $comm {
-				%down_keys{$comm} = 1;
-			}
-			CATCH { say $_ }
-		}
-
-		when (*.type == KEYUP) {
-			if GAME_KEYS(.scancode) -> $comm {
-				%down_keys{$comm} = 0;
-			} 
-			CATCH { say $_ }
-		}
-	}
-
-	###update();
-	###draw();
-}
-
-$game.render();
-
-
+$game.mainloop();
 @times.push: nqp::time_n() - $start;
 $df = nqp::time_n() - $start;
 }
@@ -63,3 +22,4 @@ say "timings:";
 say ( @timings).fmt("%3.4f");
 say "";
 'raw_timings.txt'.IO.spurt((1 X/ @times).join("\n"));
+
