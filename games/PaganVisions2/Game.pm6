@@ -62,18 +62,15 @@ enum GAME_KEYS (
 	}
 
  	method mainloop() {
-		my $start = nqp::time_n();
 		my $event = SDL_Event.new;
-		my num $df = 0.0001e0;
 		my %down_keys;
-		my @times;
 
 		while SDL_PollEvent($event) {
 			my $casted_event = SDL_CastEvent($event);
 
 			given $casted_event {
 				when (*.type == QUIT) {
-					last;### mainloop;
+					return -1; ###last;### mainloop;
 			}
 
 			when (*.type == KEYDOWN) {
@@ -93,8 +90,9 @@ enum GAME_KEYS (
 
 	###update();
 	###draw();
-	self.render();
+		self.render();
 
-	}
+		}
+	return 0;
 	}
 }

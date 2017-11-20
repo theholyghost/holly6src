@@ -10,7 +10,8 @@ my $start = nqp::time_n();
 my num $df = 0.0001e0;
 my @times;
 main: loop {
-$game.mainloop();
+my $r = $game.mainloop();
+if ($r == -1) { exit };
 @times.push: nqp::time_n() - $start;
 $df = nqp::time_n() - $start;
 }
